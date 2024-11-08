@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:32:01 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/08 18:00:20 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/08 18:49:17 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_map	*generate_map(t_data *data)
 /*
 For each point in the map, fill its (x,y,z) coordinates, including
 the gap you allowed, in a flat 2D plane from the top view,
-and colour the points
+and initialize the point colours
 
 Still using Cartesian Coordinate System, 
 this will calculate offset later based on this project's context
@@ -102,7 +102,9 @@ void	set_height_range(t_map *map, t_pt *current)
 	if (current->z > map->max_z)
 		map->max_z = current->z;
 }
-
+/* 
+Sets the point colours accordingly to its height
+ */
 void	set_point_colours(t_map *map)
 {
 	t_pt	ground;

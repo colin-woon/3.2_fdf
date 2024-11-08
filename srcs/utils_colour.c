@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:49:26 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/07 18:54:33 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/08 18:47:35 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ float_t	get_percentage(int start, int end, int cur);
 int		get_colour_channel(int start, int end, float_t percentage);
 int		get_pixel_colour(t_pt cur, t_pt start, t_pt end, t_pt delta);
 
-// Using Linear Interpolation (need to research)
+/* 
+Using Linear Interpolation
+First get the percentage of the current point between two extremes
+Then perform bit shifting and masking to extract the colour channel
+based on the percentage
+Returns the combined values of the extracted colours to form an RGB colour
+*/
 int	get_gradient_colour(t_pt cur, t_pt start, t_pt end)
 {
 	int		red;
@@ -52,7 +58,7 @@ int	get_colour_channel(int start, int end, float_t percentage)
 {
 	int	colour_channel;
 
-	colour_channel = (1 - percentage) * start + percentage * end;
+	colour_channel = start + (end - start) * percentage;
 	return (colour_channel);
 }
 
