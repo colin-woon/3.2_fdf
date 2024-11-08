@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 15:32:01 by cwoon             #+#    #+#             */
-/*   Updated: 2024/10/30 17:05:26 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/08 18:00:20 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	set_height_range(t_map *map, t_pt *current);
 void	set_point_colours(t_map *map);
 t_map	*save_original_map(t_data *data);
 
+/* 
+Initialize map struct
+ */
 t_map	*generate_map(t_data *data)
 {
 	t_map	*map;
@@ -38,25 +41,31 @@ t_map	*generate_map(t_data *data)
 	return (map);
 }
 
-// Still using Cartesian Coordinate System, 
-// this will calculate offset later based on this project's context
-// map_point.y = -map->point_gap * map->height / 2;
-// map_point.x = -map->point_gap * map->width / 2;
-// 
-// To calculate the exact point of a matrix in a 1D array
-// current = map->points + i_row * map->width + i_col;
-//   j →  0    1    2    3    4
-// i ↓  +----+----+----+----+----+
-//   0  | P0 | P1 | P2 | P3 | P4 |
-//      +----+----+----+----+----+
-//   1  | P5 | P6 | P7 | P8 | P9 |
-//      +----+----+----+----+----+
-//   2  | P10| P11| P12| P13| P14|
-//      +----+----+----+----+----+
-//   3  | P15| P16| P17| P18| P19|
-//      +----+----+----+----+----+
-// map->pt_arr =	[ P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
-// 					P11, P12, P13, P14, P15, P16, P17, P18, P19 ]
+/*
+For each point in the map, fill its (x,y,z) coordinates, including
+the gap you allowed, in a flat 2D plane from the top view,
+and colour the points
+
+Still using Cartesian Coordinate System, 
+this will calculate offset later based on this project's context
+map_point.y = -map->point_gap * map->height / 2;
+map_point.x = -map->point_gap * map->width / 2;
+
+To calculate the exact point of a matrix in a 1D array
+current = map->points + i_row * map->width + i_col;
+  j →  0    1    2    3    4
+i ↓  +----+----+----+----+----+
+  0  | P0 | P1 | P2 | P3 | P4 |
+     +----+----+----+----+----+
+  1  | P5 | P6 | P7 | P8 | P9 |
+     +----+----+----+----+----+
+  2  | P10| P11| P12| P13| P14|
+     +----+----+----+----+----+
+  3  | P15| P16| P17| P18| P19|
+     +----+----+----+----+----+
+map->pt_arr =	[ P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
+					P11, P12, P13, P14, P15, P16, P17, P18, P19 ] 
+*/
 void	fill_map(t_data *data, t_map *map)
 {
 	int		i_row;

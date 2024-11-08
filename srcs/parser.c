@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:51:06 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/07 18:55:23 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/08 15:21:22 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ int		parse_file(t_data *data, char *filename);
 char	*get_file(int fd, t_data *data);
 int		count_columns(char *line);
 
-// Also allocates memory for data->map
+/*
+Also allocates memory for data->map
+Parses the map file into a long string of numbers
+Counts the width and height of the map
+*/
 int	parse_file(t_data *data, char *filename)
 {
 	int		fd;
@@ -44,7 +48,9 @@ int	parse_file(t_data *data, char *filename)
 	}
 	return (0);
 }
-
+/*
+Parses the map file in to a long string, includes the newline
+ */
 char	*get_file(int fd, t_data *data)
 {
 	char	*line;

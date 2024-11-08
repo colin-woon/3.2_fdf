@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:23:55 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/07 18:51:18 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/08 17:51:13 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
+#include <stdio.h>
 
 #define ARG_ERROR -1
 #define MALLOC_ERROR 1
