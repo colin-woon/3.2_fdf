@@ -108,30 +108,36 @@ typedef struct s_matrix3x3
 }	t_matrix3x3;
 
 // Utils Colour
+
 int		get_gradient_colour(t_pt cur, t_pt start, t_pt end);
 float_t	get_percentage(int start, int end, int cur);
 int		get_colour_channel(int start, int end, float_t percentage);
 int		get_pixel_colour(t_pt cur, t_pt start, t_pt end, t_pt delta);
 
 // Utils Parser
+
 void	newline_to_space(unsigned int i, char *s);
 int		is_map_valid(int new_columns, t_data *previous);
 void	append_line_to_file(char **line, char **file);
 
 // Utils Math
+
 t_pt	matrix_calc(t_matrix3x3 mat, t_pt pt);
 t_pt	add_vector(t_pt pt1, t_pt pt2);
 t_pt	subtract_vector(t_pt pt1, t_pt pt2);
 
 // Utils View
+
 void	get_xy_limits(t_map *map);
 
 // Parser
+
 int		parse_file(t_data *data, char *filename);
 char	*get_file(int fd, t_data *data);
 int		count_columns(char *line);
 
 // Generate Map
+
 t_map	*generate_map(t_data *data);
 void	fill_map(t_data *data, t_map *map);
 void	set_height_range(t_map *map, t_pt *current);
@@ -139,34 +145,41 @@ void	set_point_colours(t_map *map);
 t_map	*save_original_map(t_data *data);
 
 // View
+
 void	generate_iso_view(t_map *map);
 t_map	*transform_map(t_map *map, t_matrix3x3 mat);
 void	autoscale(t_map *map);
 void	zoom(t_map *map, float_t factor);
 
 // Rotation
+
 void	rotate_x(t_map *map, float_t angle);
 void	rotate_y(t_map *map, float_t angle);
 
 // Rendering
+
 void	render_background(t_img *img, int colour);
 void	draw_map(t_img *img, t_map *map, t_pt offset);
 void	img_pix_put(t_img *img, t_pt pt);
 
 // Lines
+
 int		draw_line(t_img *img, t_pt start, t_pt end);
 int		draw_line_low(t_img *img, t_pt start, t_pt end);
 int		draw_line_high(t_img *img, t_pt start, t_pt end);
 
 // MLX
+
 int		start_mlx(t_data *data);
 int		close_window(t_data *data);
 
 // Hooks Mandatory
+
 int		loop_hook(t_data *data);
 int		key_hook1(int keysym, t_data *data);
 
 // debug
+
 void	print_img(t_img *img);
 void	print_pt(t_pt *pt);
 void	print_map(t_map *map);

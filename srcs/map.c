@@ -18,7 +18,7 @@ void	set_height_range(t_map *map, t_pt *current);
 void	set_point_colours(t_map *map);
 t_map	*save_original_map(t_data *data);
 
-/* 
+/*
 Initialize map struct
  */
 t_map	*generate_map(t_data *data)
@@ -46,7 +46,7 @@ For each point in the map, fill its (x,y,z) coordinates, including
 the gap you allowed, in a flat 2D plane from the top view,
 and initialize the point colours
 
-Still using Cartesian Coordinate System, 
+Still using Cartesian Coordinate System,
 this will calculate offset later based on this project's context
 map_point.y = -map->point_gap * map->height / 2;
 map_point.x = -map->point_gap * map->width / 2;
@@ -64,7 +64,7 @@ i ↓  +----+----+----+----+----+
   3  | P15| P16| P17| P18| P19|
      +----+----+----+----+----+
 map->pt_arr =	[ P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
-					P11, P12, P13, P14, P15, P16, P17, P18, P19 ] 
+					P11, P12, P13, P14, P15, P16, P17, P18, P19 ]
 */
 void	fill_map(t_data *data, t_map *map)
 {
@@ -102,7 +102,8 @@ void	set_height_range(t_map *map, t_pt *current)
 	if (current->z > map->max_z)
 		map->max_z = current->z;
 }
-/* 
+
+/*
 Sets the point colours accordingly to its height
  */
 void	set_point_colours(t_map *map)
