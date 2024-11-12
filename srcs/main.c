@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:52:54 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/11 20:39:25 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/12 14:56:23 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	main(int ac, char **av)
 		return (FILE_ERROR);
 	generate_map(&data);
 	generate_iso_view(data.map);
-	// autoscale(data.map);
-	// data.animate_on = 0;
-	// if (start_mlx(&data) == -1)
-	// 	return (MLX_ERROR);
-	// return (0);
+	autoscale(data.map);
+	if (start_mlx(&data) == -1)
+		return (MLX_ERROR);
+	return (0);
 }

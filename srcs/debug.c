@@ -55,7 +55,6 @@ void print_data(t_data *data)
 {
     printf("MLX Pointer: %p\n", data->mlx_ptr);
     printf("Window Pointer: %p\n", data->window_ptr);
-    printf("Animate On: %d\n", data->animate_on);
     printf("Parsed File: \n");
     for (int i = 0; data->parsed_file[i]; i++)
     {

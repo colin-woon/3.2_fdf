@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:23:55 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/08 17:51:13 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:02:39 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_data
 	t_img	img;
 	t_map	*map;
 	char	**parsed_file;
-	int		animate_on;
 	t_map	*origin_map;
 }	t_data;
 

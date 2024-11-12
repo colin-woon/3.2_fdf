@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:16:59 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/11 20:37:01 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/12 14:36:46 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,30 @@ t_map	*transform_map(t_map *map, t_matrix3x3 rotation_mat)
 	return (map);
 }
 
+/*
+Calculates the scaling factors for both the x and y dimensions
+based on the map's current limits and the display dimensions. It then applies
+the smaller of the two scaling factors to ensure the map fits within the display
+while maintaining the aspect ratio.
+ */
 void	autoscale(t_map *map)
 {
-	float_t	scale_x;
-	float_t	scale_y;
+	float_t	factor_x;
+	float_t	factor_y;
 
 	map->min_x = 0;
 	map->max_x = 0;
 	map->min_y = 0;
 	map->max_y = 0;
 	get_xy_limits(map);
-	scale_x = (D_WIDTH / 2 - MARGIN) / fmaxf(abs(map->max_x), abs(map->min_x));
-	scale_y = (D_HEIGHT / 2 - MARGIN) / fmaxf(abs(map->max_y), abs(map->min_y));
-	zoom(map, fminf(scale_x, scale_y));
+	factor_x = (D_WIDTH / 2 - MARGIN) / fmaxf(abs(map->max_x), abs(map->min_x));
+	factor_y = (D_HEIGHT / 2 - MARGIN) / fmaxf(abs(map->max_y), abs(map->min_y));
+	zoom(map, fminf(factor_x, factor_y));
 }
 
+/*
+Multiplies each respective point coordinates to its factors
+ */
 void	zoom(t_map *map, float_t factor)
 {
 	t_matrix3x3	scale;
