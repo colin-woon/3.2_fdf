@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:51:06 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/08 15:21:22 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/12 20:01:18 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*get_file(int fd, t_data *data)
 		{
 			no_of_columns = count_columns(line);
 			if (!is_map_valid(no_of_columns, data))
-				return (NULL);
+				return (free(line), free(file), free(data->map), NULL);
 			data->map->width = no_of_columns;
 			data->map->height += 1;
 			append_line_to_file(&line, &file);

@@ -10,10 +10,12 @@
 #------------------------------------------------------------------------------#
 
 # Compiler and flags
-CC		=	gcc
+CC		=	clang
 TEMP	=
-CFLAGS	=	-Wall -Werror -Wextra
-DEBUG	=	-g3 -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra $(DEBUG_VALGRIND)
+DEBUG_VALGRIND	=	-g3
+DEBUG_GCC	=	-fsanitize=address
+DEBUG_CLANG	=	-fsanitize=memory
 RM		=	rm -rf
 
 # Output file name

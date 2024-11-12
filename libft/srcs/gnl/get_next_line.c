@@ -5,104 +5,133 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 21:26:11 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/07 18:49:43 by cwoon            ###   ########.fr       */
+/*   Created: 2024/07/15 15:26:05 by cwoon             #+#    #+#             */
+/*   Updated: 2024/11/12 20:52:38 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-static void	free_and_set_null(char **ptr)
-{
-	if (ptr != NULL)
-	{
-		free(*ptr);
-		*ptr = NULL;
-	}
-}
-
-static ssize_t	read_from_fd(int fd, char **extra_chars)
-{
-	ssize_t		n;
-	char		*buf;
-	char		*tmp;
-
-	n = 1;
-	while (n > 0 && !ft_strchr(*extra_chars, '\n'))
-	{
-		buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-		if (buf == NULL)
-			return (-1);
-		n = read(fd, buf, BUFFER_SIZE);
-		if (n == -1 || (n == 0 && (*extra_chars == NULL)))
-		{
-			free_and_set_null(extra_chars);
-			free_and_set_null(&buf);
-			return (-1);
-		}
-		buf[n] = '\0';
-		tmp = ft_strdup(*extra_chars);
-		free_and_set_null(extra_chars);
-		*extra_chars = ft_strjoin(tmp, buf);
-		free_and_set_null(&tmp);
-		free_and_set_null(&buf);
-	}
-	return (n);
-}
-
-static char	*get_current_line(char **extra_chars, ssize_t *i)
-{
-	ssize_t		len;
-	char		*line;
-
-	*i = 0;
-	while ((*extra_chars)[*i] != '\n' && (*extra_chars)[*i] != '\0')
-		(*i)++;
-	if ((*extra_chars)[*i] == '\n')
-		(*i)++;
-	line = (char *)malloc((*i + 1) * sizeof(char));
-	if (!line)
-		return (NULL);
-	len = 0;
-	while (len < *i)
-	{
-		line[len] = (*extra_chars)[len];
-		len++;
-	}
-	line[len] = '\0';
-	return (line);
-}
-
-static void	save_extra_char(char **extra_chars, ssize_t *i)
-{
-	char		*tmp;
-
-	if ((*extra_chars)[*i - 1] == '\0')
-		tmp = ft_strdup(*extra_chars + *i - 1);
-	else
-		tmp = ft_strdup(*extra_chars + *i);
-	free_and_set_null(extra_chars);
-	*extra_chars = ft_strdup(tmp);
-	free_and_set_null(&tmp);
-}
+char	*get_next_line(int fd);
+void	create_linked_list(t_s_list **list_ptr, int fd);
+void	append_str_node(t_s_list **list_ptr, char *str_buffer);
+char	*get_line(t_s_list *node_ptr);
+void	update_list_after_newline(t_s_list **list_ptr);
 
 char	*get_next_line(int fd)
 {
-	ssize_t		i;
-	static char	*extra_chars = NULL;
-	char		*line;
+	static t_s_list	*list;
+	char			*next_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	next_line = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
-	line = NULL;
-	if (read_from_fd(fd, &extra_chars) == -1)
+	create_linked_list(&list, fd);
+	if (list == NULL)
 		return (NULL);
-	if (extra_chars[0] == '\0')
-	{
-		free_and_set_null(&extra_chars);
-		return (NULL);
-	}
-	line = get_current_line(&extra_chars, &i);
-	save_extra_char(&extra_chars, &i);
-	return (line);
+	next_line = get_line(list);
+	update_list_after_newline(&list);
+	return (next_line);
 }
+
+void	create_linked_list(t_s_list **list_ptr, int fd)
+{
+	int		chars_read;
+	char	*str_buffer;
+
+	chars_read = 0;
+	str_buffer = NULL;
+	while (found_newline(*list_ptr) == 0)
+	{
+		str_buffer = malloc(BUFFER_SIZE + 1);
+		if (str_buffer == NULL)
+			return ;
+		chars_read = read(fd, str_buffer, BUFFER_SIZE);
+		if (chars_read == 0)
+		{
+			free(str_buffer);
+			return ;
+		}
+		str_buffer[chars_read] = '\0';
+		append_str_node(list_ptr, str_buffer);
+	}
+	return ;
+}
+
+void	append_str_node(t_s_list **list_ptr, char *str_buffer)
+{
+	t_s_list	*new_node;
+	t_s_list	*last_node;
+
+	last_node = find_last_node(*list_ptr);
+	new_node = (t_s_list *)malloc(sizeof(t_s_list));
+	if (new_node == NULL)
+		return ;
+	if (last_node == NULL)
+		*list_ptr = new_node;
+	else
+		last_node->next_node = new_node;
+	*new_node = (t_s_list) \
+	{.file_buffer = str_buffer, .next_node = NULL};
+	return ;
+}
+
+char	*get_line(t_s_list *node_ptr)
+{
+	int		line_length;
+	char	*new_line;
+
+	if (node_ptr == NULL)
+		return (NULL);
+	line_length = strlen_to_newline(node_ptr);
+	new_line = malloc(line_length + 1);
+	if (new_line == NULL)
+		return (NULL);
+	copy_list_to_line(node_ptr, new_line);
+	return (new_line);
+}
+
+void	update_list_after_newline(t_s_list **list_ptr)
+{
+	t_s_list	*last_node;
+	t_s_list	*new_node_after_newline;
+	int		i_src;
+	int		i_dest;
+	char	*str_buffer;
+
+	str_buffer = malloc(BUFFER_SIZE + 1);
+	new_node_after_newline = malloc(sizeof(t_s_list));
+	if (str_buffer == NULL || new_node_after_newline == NULL || \
+	list_ptr == NULL)
+		return ;
+	last_node = find_last_node(*list_ptr);
+	i_src = 0;
+	i_dest = 0;
+	while (last_node->file_buffer[i_src] != '\0' && \
+	last_node->file_buffer[i_src] != '\n')
+		i_src++;
+	while (last_node->file_buffer[i_src] != '\0' && \
+	last_node->file_buffer[++i_src] != '\0')
+		str_buffer[i_dest++] = last_node->file_buffer[i_src];
+	str_buffer[i_dest] = '\0';
+	*new_node_after_newline = (t_s_list) \
+	{.file_buffer = str_buffer, .next_node = NULL};
+	clear_list(list_ptr, new_node_after_newline, str_buffer);
+}
+/*
+#include <stdio.h>
+int main()
+{
+	int	fd, no_of_lines;
+	char *line_of_str;
+
+	no_of_lines = 1;
+	fd = open("test.txt", O_RDONLY);
+
+	while ((line_of_str = get_next_line(fd)))
+	{
+		printf("%d->%s", no_of_lines++, line_of_str);
+		free(line_of_str);
+	}
+}
+*/
