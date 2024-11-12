@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:15:30 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/12 15:01:49 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/12 15:13:43 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	start_mlx(t_data *data)
 	mlx_loop_hook(data->mlx_ptr, loop_hook, data);
 	mlx_hook(data->window_ptr, DestroyNotify, 0, close_window, data);
 	mlx_hook(data->window_ptr, KeyPress, 1, key_hook1, data);
-	mlx_do_key_autorepeaton(data->mlx_ptr);
 	mlx_loop(data->mlx_ptr);
 	return (0);
 }

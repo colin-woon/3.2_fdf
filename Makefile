@@ -12,8 +12,8 @@
 # Compiler and flags
 CC		=	gcc
 TEMP	=
-CFLAGS	=	-Wall -Werror -Wextra
-DEBUG	=	-g3 -fsanitize=address 
+CFLAGS	=	-Wall -Werror -Wextra -g3
+DEBUG	=	-g3 -fsanitize=address
 RM		=	rm -rf
 
 # Output file name

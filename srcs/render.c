@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:22:23 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/07 18:52:48 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/12 16:21:45 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	img_pix_put(t_img *img, t_pt pt)
 	int		x;
 	int		y;
 
-	x = round(pt.x);
-	y = round(pt.y);
+	x = pt.x;
+	y = pt.y;
 	if (x < 0 || x >= D_WIDTH || y < 0 || y >= D_HEIGHT)
 		return ;
 	pixel = img->address + y * img->line_len + x * (img->bits_p_pixel / 8);
