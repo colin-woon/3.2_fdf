@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:22:23 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/12 16:21:45 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/14 13:24:54 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,19 @@ void	render_background(t_img *img, int colour)
 		row++;
 	}
 }
+/*
+Starts drawing the lines from one point to the other,
+adds the offset to convert the cartesian coordinates to
+ 2D graphic coordinates
 
+(i % map->width != map->width - 1)
+- excludes the last column to the right
+- connect to the points on their right
+
+(i < map->width * map->height - map->width)
+- excludes those in the last row
+- connect to the points beneath them
+ */
 void	draw_map(t_img *img, t_map *map, t_pt offset)
 {
 	int		i;
@@ -64,6 +76,9 @@ void	draw_map(t_img *img, t_map *map, t_pt offset)
 /*
 Pixel seems to be assigned twice:
 pixel		= (locates the memory address of where the pixel should be placed)
+similar to a 2D grid:
+- y * line_len finds the nth row
+- x * (bpp/8) finds the nth pixel (1byte = 8bits, /8 finds total bytes)
 *(int)pixel	= sets the pixel colour
  */
 void	img_pix_put(t_img *img, t_pt pt)

@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:49:26 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/11 19:04:11 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/15 16:10:34 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ float_t	get_percentage(int start, int end, int cur)
 	cur_position = cur - start;
 	return (cur_position / diff);
 }
-
+/*
+https://www.alanzucconi.com/2016/01/06/colour-interpolation/
+ */
 int	get_colour_channel(int start, int end, float_t percentage)
 {
 	int	colour_channel;

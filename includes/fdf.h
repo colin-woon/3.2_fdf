@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:23:55 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/12 15:02:39 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/14 13:27:32 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,8 @@ void	img_pix_put(t_img *img, t_pt pt);
 // Lines
 
 int		draw_line(t_img *img, t_pt start, t_pt end);
-int		draw_line_low(t_img *img, t_pt start, t_pt end);
-int		draw_line_high(t_img *img, t_pt start, t_pt end);
+int		draw_line_vertical(t_img *img, t_pt start, t_pt end);
+int		draw_line_horizontal(t_img *img, t_pt start, t_pt end);
 
 // MLX
 
