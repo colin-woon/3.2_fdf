@@ -6,17 +6,17 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:26:02 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/12 20:50:20 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/15 17:02:20 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		found_newline(t_s_list *node_ptr);
+int			found_newline(t_s_list *node_ptr);
 t_s_list	*find_last_node(t_s_list *node_ptr);
-int		strlen_to_newline(t_s_list *node_ptr);
-void	copy_list_to_line(t_s_list *node_ptr, char *new_line);
-void	clear_list(t_s_list **list_ptr, t_s_list *new_node_after_newline, \
+int			strlen_to_newline(t_s_list *node_ptr);
+void		copy_list_to_line(t_s_list *node_ptr, char *new_line);
+void		clear_list(t_s_list **list_ptr, t_s_list *new_node_after_newline, \
 char *str_buffer);
 
 int	found_newline(t_s_list *node_ptr)

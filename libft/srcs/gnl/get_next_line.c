@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:26:05 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/12 20:52:38 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/15 17:02:06 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	update_list_after_newline(t_s_list **list_ptr)
 {
 	t_s_list	*last_node;
 	t_s_list	*new_node_after_newline;
-	int		i_src;
-	int		i_dest;
-	char	*str_buffer;
+	int			i_src;
+	int			i_dest;
+	char		*str_buffer;
 
 	str_buffer = malloc(BUFFER_SIZE + 1);
 	new_node_after_newline = malloc(sizeof(t_s_list));

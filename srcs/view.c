@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:16:59 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/12 14:36:46 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/15 17:04:28 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ void	autoscale(t_map *map)
 	map->min_y = 0;
 	map->max_y = 0;
 	get_xy_limits(map);
-	factor_x = (D_WIDTH / 2 - MARGIN) / fmaxf(abs(map->max_x), abs(map->min_x));
-	factor_y = (D_HEIGHT / 2 - MARGIN) / fmaxf(abs(map->max_y), abs(map->min_y));
+	factor_x = (D_WIDTH / 2 - MARGIN) / \
+				fmaxf(abs(map->max_x), abs(map->min_x));
+	factor_y = (D_HEIGHT / 2 - MARGIN) / \
+				fmaxf(abs(map->max_y), abs(map->min_y));
 	zoom(map, fminf(factor_x, factor_y));
 }
 

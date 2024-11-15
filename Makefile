@@ -50,7 +50,6 @@ SRCS_FILES		=	srcs/lines.c \
 					srcs/utils_parser.c \
 					srcs/utils.view.c \
 					srcs/view.c \
-					srcs/debug.c
 
 OBJS_FILES		=	$(patsubst %.c, $(OBJS_DIR)%.o, $(SRCS_FILES))
 

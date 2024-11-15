@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:51:06 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/12 20:01:18 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/15 17:03:40 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	parse_file(t_data *data, char *filename)
 	}
 	return (0);
 }
+
 /*
 Parses the map file in to a long string, includes the newline
  */

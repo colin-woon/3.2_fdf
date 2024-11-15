@@ -6,7 +6,7 @@
 /*   By: cwoon <cwoon@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:22:23 by cwoon             #+#    #+#             */
-/*   Updated: 2024/11/14 13:24:54 by cwoon            ###   ########.fr       */
+/*   Updated: 2024/11/15 17:03:56 by cwoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	render_background(t_img *img, int colour)
 		row++;
 	}
 }
+
 /*
 Starts drawing the lines from one point to the other,
 adds the offset to convert the cartesian coordinates to
